@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types'
+import Link from 'next/link'
 
 export function Post({ _id, title, author }) {
     return (
         <article>
-            <h2>{title}</h2>
+            <h2>
+                <Link href={`/posts/${_id}`}>{title}</Link>
+            </h2>
             <em>
                 Written by <strong>{author.username}</strong>
             </em>
