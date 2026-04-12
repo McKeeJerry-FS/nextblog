@@ -1,4 +1,9 @@
+import { notFound } from 'next/navigation'
+import { getPostById } from '@/data/posts'
+import { initDatabase } from '@/db/init'
 import { FullPost } from '@/components/FullPost'
+
+
 
 export default function ViewPostPage({ params }) {
     const post = {
@@ -7,6 +12,8 @@ export default function ViewPostPage({ params }) {
         author: { username: 'Jerry McKee'},
     }
 
+    if(!post) notFound()
+        
     return (
         <FullPost 
             title={post.title} 
