@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 
-export function UserBar({ username }) {
+export function UserBar({ username, logoutAction }) {
     return (
-        <form action="">
+        <form action={logoutAction}>
             <Link href="/create">Create Post</Link> | Logged in as {' '}
             <strong>{username}</strong> <button>Logout</button>
         </form>
@@ -11,7 +11,8 @@ export function UserBar({ username }) {
 }
 
 UserBar.propTypes = {
-    username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired,
+    logoutAction: PropTypes.func.isRequired,
 }
 
 export function LoginSignupLinks() {
@@ -22,15 +23,16 @@ export function LoginSignupLinks() {
     )
 }
 
-export function Navigation({ username }) {
+export function Navigation({ username, logoutAction }) {
     return (
         <>
             <Link href='/'>Home</Link>
-            {username ? <UserBar username={username} /> : <LoginSignupLinks />}
+            {username ? <UserBar username={username} logoutAction={logoutAction} /> : <LoginSignupLinks />}
         </>
     )
 }
 
 Navigation.propTypes = {
-    username: PropTypes.string
+    username: PropTypes.string,
+    logoutAction: PropTypes.func.isRequired,
 }
